@@ -10,7 +10,10 @@ public class DistanceAndDirectionCalculatorTest {
     @Test
     void twoPointsWithSameXAndYCoordinatesShouldHaveADistanceOfZero() {
         Point origin = new Point(0, 0);
-        Assertions.assertEquals(0, DistanceAndDirectionCalculator.distance(origin, origin));
+
+        double distance = origin.distance(origin);
+
+        Assertions.assertEquals(0, distance);
     }
 
     @Test

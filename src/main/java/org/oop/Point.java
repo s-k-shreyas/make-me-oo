@@ -24,4 +24,10 @@ public class Point {
         this.x = x;
         this.y = y;
     }
+
+    public double distance(Point dest) {
+        if(x == dest.x && y == dest.y)
+            return 0;
+        return -1;
+    }
 }

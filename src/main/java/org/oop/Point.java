@@ -4,22 +4,6 @@ public class Point {
     private double x;
     private double y;
 
-    public double getX() {
-        return x;
-    }
-
-    public void setX(double x) {
-        this.x = x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    public void setY(double y) {
-        this.y = y;
-    }
-
     public Point(double x, double y) {
         this.x = x;
         this.y = y;
@@ -45,7 +29,7 @@ public class Point {
             return Math.PI/2;
         else if(x == destination.x && destination.y < 0)
             return 3 * Math.PI/2;
-
-        return -1;
+        else
+            return Math.atan2(Math.abs(y - destination.y), Math.abs(x - destination.x));
     }
 }

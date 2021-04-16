@@ -1,10 +1,8 @@
 package org.oop;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.oop.DistanceAndDirectionCalculator.direction;
 
 public class DistanceAndDirectionCalculatorTest {
 
@@ -90,4 +88,14 @@ public class DistanceAndDirectionCalculatorTest {
         assertEquals(Math.PI / 2, direction1);
     }
 
+    @Test
+    void ShouldReturnDirectionBetweenPointsOtherThanOrigin()
+    {
+        Point point1 = new Point(3, 5);
+        Point point2 = new Point(5, 7);
+
+        double direction = point1.direction(point2);
+
+        assertEquals(Math.PI/4, direction);
+    }
 }

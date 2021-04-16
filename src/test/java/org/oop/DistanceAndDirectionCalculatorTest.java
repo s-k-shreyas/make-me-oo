@@ -7,95 +7,104 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class DistanceAndDirectionCalculatorTest {
 
     @Test
-    void twoPointsWithSameXAndYCoordinatesShouldHaveADistanceOfZero() {
+    void shouldReturnZeroForDistanceBetweenSamePoint() {
         Point origin = new Point(0, 0);
 
-        double distance = origin.distance(origin);
+        double distance = origin.findDistance(origin);
 
         assertEquals(0, distance);
     }
 
     @Test
-    void distanceBetweenOriginAndPointsOnUnitCircleShouldBeOne() {
+    void shouldReturnOneForDistanceBetweenOriginAndPointOnUnitCircle() {
         Point origin = new Point(0, 0);
         Point point1 = new Point(1, 0);
         Point point2 = new Point(0, 1);
 
-        double distance = origin.distance(point1);
-        double distance1 = origin.distance(point2);
+        double distance = origin.findDistance(point1);
+        double distance1 = origin.findDistance(point2);
 
         assertEquals(1, distance);
         assertEquals(1, distance1);
     }
 
     @Test
-    void distanceBetweenTwoOppositePointsOnUnitCircleShouldBeTwo() {
+    void shouldReturnTwoForDistanceBetweenPointsOnOppositeUnitCircle() {
         Point point1 = new Point(1, 0);
         Point point2 = new Point(-1, 0);
 
-        double distance = point1.distance(point2);
+        double distance = point1.findDistance(point2);
 
         assertEquals(2, distance);
     }
 
     @Test
-    void shouldReturnDistanceBetweenTwoPointsWhenPointsAreInDifferentAxis()
-    {
+    void shouldReturnDistanceBetweenTwoPointsWhenPointsAreInDifferentAxis() {
         Point point1 = new Point(1, 3);
         Point point2 = new Point(5, 6);
 
-        double distance = point1.distance(point2);
+        double distance = point1.findDistance(point2);
 
-        assertEquals(5,distance);
+        assertEquals(5, distance);
     }
 
     @Test
-    void originAndPointOnPositiveXAxisShouldBeZeroRadiansAway() {
+    void shouldReturnZeroRadiansIfXIsInPositiveDirection() {
         Point origin = new Point(0, 0);
         Point point1 = new Point(1, 0);
         Point point2 = new Point(3, 0);
 
-        double direction = origin.direction(point1);
-        double direction1 = origin.direction(point2);
+        double direction = origin.findDirection(point1);
+        double direction1 = origin.findDirection(point2);
 
         assertEquals(0, direction);
         assertEquals(0, direction1);
     }
 
     @Test
-    void originAndPointOnNegativeXAxisShouldBePiRadiansAway() {
+    void shouldReturnPiRadiansIfDirectionMeasuredBetweenOriginAndPointOnNegativeXAxis() {
         Point origin = new Point(0, 0);
         Point point1 = new Point(-1, 0);
         Point point2 = new Point(-3, 0);
 
-        double direction = origin.direction(point1);
-        double direction1 = origin.direction(point2);
+        double direction = origin.findDirection(point1);
+        double direction1 = origin.findDirection(point2);
 
         assertEquals(Math.PI, direction);
         assertEquals(Math.PI, direction1);
     }
 
     @Test
-    void originAndPointOnYAxisShouldBeHalfPiRadiansAway() {
+    void shouldReturnHalfPiRadiansIfDirectionMeasuredBetweenOriginAndPointOnYAxis() {
         Point origin = new Point(0, 0);
         Point point1 = new Point(0, 1);
         Point point2 = new Point(0, 3);
 
-        double direction = origin.direction(point1);
-        double direction1 = origin.direction(point2);
+        double direction = origin.findDirection(point1);
+        double direction1 = origin.findDirection(point2);
 
         assertEquals(Math.PI / 2, direction);
         assertEquals(Math.PI / 2, direction1);
     }
 
     @Test
-    void ShouldReturnDirectionBetweenPointsOtherThanOrigin()
+    void shouldReturnThreePiByTwoRadianIfDirectionMeasuredBetweenOriginAnfPointInNegativeYAxis()
     {
+        Point origin = new Point(0, 0);
+        Point point = new Point(0, -2);
+
+        double direction = origin.findDirection(point);
+
+        assertEquals(3 * Math.PI / 2, direction);
+    }
+
+    @Test
+    void shouldReturnDirectionBetweenPointsOtherThanOnXAndYAxis() {
         Point point1 = new Point(3, 5);
         Point point2 = new Point(5, 7);
 
-        double direction = point1.direction(point2);
+        double direction = point1.findDirection(point2);
 
-        assertEquals(Math.PI/4, direction);
+        assertEquals(Math.PI / 4, direction);
     }
 }

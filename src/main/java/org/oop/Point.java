@@ -25,13 +25,27 @@ public class Point {
         this.y = y;
     }
 
-    public double distance(Point dest) {
-        if(x == dest.x && y == dest.y)
+    public double distance(Point destination) {
+        if(x == destination.x && y == destination.y)
             return 0;
-        else if(y == dest.y)
-            return Math.abs(x- dest.x);
-        else if(x == dest.x)
-            return Math.abs(y - dest.y);
+        else if(y == destination.y)
+            return Math.abs(x- destination.x);
+        else if(x == destination.x)
+            return Math.abs(y - destination.y);
+        else
+            return Math.sqrt(Math.pow(x - destination.x, 2) + Math.pow(y - destination.y, 2));
+    }
+
+    public double direction(Point destination) {
+        if(y == destination.y && destination.x > 0)
+            return 0;
+        else if(y == destination.y && destination.x < 0)
+            return Math.PI;
+        else if(x == destination.x && destination.y > 0)
+            return Math.PI/2;
+        else if(x == destination.x && destination.y < 0)
+            return 3 * Math.PI/2;
+
         return -1;
     }
 }

@@ -28,6 +28,10 @@ public class Point {
     public double distance(Point dest) {
         if(x == dest.x && y == dest.y)
             return 0;
+        else if(y == dest.y)
+            return Math.abs(x- dest.x);
+        else if(x == dest.x)
+            return Math.abs(y - dest.y);
         return -1;
     }
 }

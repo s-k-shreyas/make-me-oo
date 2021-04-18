@@ -21,13 +21,13 @@ public class Point {
     }
 
     public double findDirection(Point destination) {
-        if (y == destination.y && destination.x > 0)
+        if (y == destination.y && destination.x > x)
             return 0;
-        else if (y == destination.y && destination.x < 0)
+        else if (y == destination.y && destination.x < x)
             return Math.PI;
-        else if (x == destination.x && destination.y > 0)
+        else if (x == destination.x && destination.y > y)
             return Math.PI / 2;
-        else if (x == destination.x && destination.y < 0)
+        else if (x == destination.x && destination.y < y)
             return 3 * Math.PI / 2;
         else
             return Math.atan2(Math.abs(y - destination.y), Math.abs(x - destination.x));
